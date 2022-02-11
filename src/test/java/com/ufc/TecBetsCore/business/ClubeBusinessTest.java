@@ -32,25 +32,4 @@ public class ClubeBusinessTest {
                 .collect(Collectors.toList()));
         assertEquals(2, clubeService.obterTodos().size());
     }
-
-    @Test
-    void obtemPorIdTest() {
-        String id = "123456";
-        when(clubeRepository.findById(id)).thenReturn(java.util.Optional.of(new Clube("123456","ClubeTeste",1)));
-        assertEquals(id, clubeService.obterPorId(id).getId());
-    }
-
-    @Test
-    void removePeloIdTest() {
-        Clube clube = new Clube("123456","ClubeTeste",1);
-        clubeService.removerPeloId("123456");
-        verify(clubeRepository,times(1)).delete(clube);
-    }
-
-    @Test
-    void criarClubeTest() {
-        Clube clube = new Clube("123456","ClubeTeste",1);
-        when(clubeRepository.save(clube)).thenReturn(clube);
-        Assertions.assertEquals(clube, clubeService.criarClube(clube));
-    }
 }
