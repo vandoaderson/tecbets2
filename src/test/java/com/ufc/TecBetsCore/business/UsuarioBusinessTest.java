@@ -33,25 +33,4 @@ public class UsuarioBusinessTest {
                 .collect(Collectors.toList()));
         assertEquals(2, usuarioService.obterTodos().size());
     }
-
-    @Test
-    void obtemPorIdTest() {
-        String id = "123456";
-        when(usuarioRepository.findById(id)).thenReturn(java.util.Optional.of(new Usuario("123456", "teste", 2, 3000)));
-        assertEquals(id, usuarioService.obterPorId(id).getId());
-    }
-
-    @Test
-    void removePeloIdTest() {
-        Usuario usuario = new Usuario("123456", "teste", 2, 3000);
-        usuarioService.removerPeloId("123456");
-        verify(usuarioRepository,times(1)).delete(usuario);
-    }
-
-    @Test
-    void criarUsuarioTest() {
-        Usuario usuario = new Usuario("123456", "teste", 2, 3000);
-        when(usuarioRepository.save(usuario)).thenReturn(usuario);
-        Assertions.assertEquals(usuario, usuarioService.criarUsuario(usuario));
-    }
 }
