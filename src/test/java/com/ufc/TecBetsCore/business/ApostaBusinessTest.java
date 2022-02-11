@@ -33,24 +33,4 @@ public class ApostaBusinessTest {
         assertEquals(2, apostaService.obterTodos().size());
     }
 
-    @Test
-    void obtemPorIdTest() {
-        String id = "123456";
-        when(apostaRepository.findById(id)).thenReturn(java.util.Optional.of(new Aposta("123456","123456","123456","123456",1000)));
-        assertEquals(id, apostaService.obterPorId(id).getId());
-    }
-
-    @Test
-    void removePeloIdTest() {
-        Aposta aposta = new Aposta("123456","123456","123456","123456",1000);
-        apostaService.removerPeloId("123456");
-        verify(apostaRepository,times(1)).delete(aposta);
-    }
-
-    @Test
-    void criarApostaTest() {
-        Aposta aposta = new Aposta("123456","123456","123456","123456",1000);
-        when(apostaRepository.save(aposta)).thenReturn(aposta);
-        Assertions.assertEquals(aposta, apostaService.criarAposta(aposta));
-    }
 }
